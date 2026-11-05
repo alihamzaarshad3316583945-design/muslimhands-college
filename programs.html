@@ -1,0 +1,83 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Programs | Aisha Cahn College</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="index.html"><img class="brand-logo" src="images/muslim-hands-logo.png" alt="Muslim Hands logo"><span>AISHA CAHN<small>COLLEGE OF COMPUTER SCIENCE<br>& DESIGN TECHNOLOGY</small></span></a>
+    <button class="menu" aria-label="Toggle navigation">☰</button>
+    <nav class="nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="admissions.html">Admissions</a><a href="faculty.html">Faculty</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a><a class="cta" href="login.html">Portal Login</a></nav>
+  </header>
+  <section class="pagehero">
+    <span class="eyebrow">COURSES & SESSIONS</span>
+    <h1>Find the right path for you</h1>
+    <p>Intermediate study programs and practical skills courses.</p>
+  </section>
+  <main class="wrap content">
+    <span class="eyebrow">INTERMEDIATE · FA / ICS / FSC</span>
+    <h2>College programs</h2>
+    <div class="list">
+      <article class="card">
+        <img class="card__image" src="images/study-notes.jpg" alt="Student studying course materials" loading="lazy">
+        <span class="eyebrow">HUMANITIES & ARTS</span>
+        <h3>FA</h3>
+        <p>A humanities-focused intermediate program. Students choose elective subjects from the combinations offered by the college and permitted by the relevant board.</p>
+        <p><b>Subjects:</b> Electives vary; ask the college for the current subject list.</p>
+        <p><b>Typical duration:</b> Two years for intermediate study; confirm the current academic plan.</p>
+      </article>
+      <article class="card">
+        <img class="card__image" src="images/computer-learning.jpg" alt="Student learning with a computer" loading="lazy">
+        <span class="eyebrow">COMPUTER SCIENCE</span>
+        <h3>ICS</h3>
+        <p>Intermediate study combining computer science with mathematics and supporting subjects.</p>
+        <p><b>Core focus:</b> Computer Science and Mathematics. Third-subject options can include Physics, Statistics or Economics, subject to board and college availability.</p>
+        <p><b>Typical duration:</b> Two years for intermediate study; confirm the current academic plan.</p>
+      </article>
+      <article class="card">
+        <img class="card__image" src="images/classroom.jpg" alt="Classroom learning" loading="lazy">
+        <span class="eyebrow">LIFE SCIENCES</span>
+        <h3>FSc Pre-Medical</h3>
+        <p>Science preparation for students interested in biological and health-related fields.</p>
+        <p><b>Core subjects:</b> Biology, Chemistry and Physics.</p>
+        <p><b>Typical duration:</b> Two years for intermediate study; confirm the current academic plan.</p>
+      </article>
+      <article class="card">
+        <img class="card__image" src="images/digital-student.jpg" alt="Student working on a technology project" loading="lazy">
+        <span class="eyebrow">ENGINEERING & PHYSICAL SCIENCES</span>
+        <h3>FSc Pre-Engineering</h3>
+        <p>Science preparation for students interested in engineering and other mathematics-based fields.</p>
+        <p><b>Core subjects:</b> Mathematics, Chemistry and Physics.</p>
+        <p><b>Typical duration:</b> Two years for intermediate study; confirm the current academic plan.</p>
+      </article>
+    </div>
+    <div class="notice" style="margin-top:20px">For all intermediate programs, exact subject combinations, eligibility/merit, board affiliation, fees, class timings and intake dates must be confirmed with the college. No affiliation, fee or schedule details have been assumed here.</div>
+
+    <section class="section">
+      <span class="eyebrow">PRACTICAL TRAINING</span>
+      <h2>Skills & short courses</h2>
+      <div class="course-tools">
+        <div class="field"><label for="courseSearch">Search courses</label><input id="courseSearch" type="search" placeholder="Try “design” or “marketing”" aria-controls="courseList"></div>
+        <div class="field"><label for="courseCategory">Course category</label><select id="courseCategory" aria-controls="courseList"><option value="all">All categories</option><option value="creative">Creative skills</option><option value="technology">Technology</option><option value="marketing">Marketing & business</option></select></div>
+        <p id="courseCount" class="course-count" aria-live="polite"></p>
+      </div>
+      <div class="list" id="courseList">
+        <article class="card course-card course--tailoring" data-course-category="creative"><img class="card__image" src="images/creative-art.jpg" alt="Creative work and art materials" loading="lazy"><span class="eyebrow">CREATIVE SKILLS</span><h3>Tailoring</h3><p>Measurements, fabric knowledge, basic patterns, cutting, stitching and finishing.</p><details class="course-syllabus"><summary>Explore learning journey</summary><ul><li>Fabric, tools and measurements</li><li>Pattern planning and cutting</li><li>Stitching and garment finishing</li></ul></details><a class="btn course-enquire" href="admissions.html?course=Tailoring#course">Ask about this course</a></article>
+        <article class="card course-card" data-course-category="creative"><img class="card__image" src="images/fashion-design.jpg" alt="Fashion collection displayed on a clothing rack" loading="lazy"><span class="eyebrow">FASHION & DESIGN</span><h3>Fashion Designing</h3><p>Introduction to fashion illustration, color and fabric selection, design concepts and developing a garment idea.</p><details class="course-syllabus"><summary>Explore learning journey</summary><ul><li>Fashion inspiration and moodboards</li><li>Illustration, color and textiles</li><li>Develop a guided design concept</li></ul></details><a class="btn course-enquire" href="admissions.html?course=Fashion%20Designing#course">Ask about this course</a></article>
+        <article class="card course-card" data-course-category="technology"><img class="card__image" src="images/artificial-intelligence.jpg" alt="Artificial intelligence concept visual" loading="lazy"><span class="eyebrow">EMERGING TECHNOLOGY</span><h3>Artificial Intelligence</h3><p>Beginner-friendly introduction to AI concepts, responsible AI use, prompt writing and practical AI tools.</p><details class="course-syllabus"><summary>Explore learning journey</summary><ul><li>AI fundamentals and everyday uses</li><li>Prompt writing and practical tools</li><li>Responsible use and fact-checking</li></ul></details><a class="btn course-enquire" href="admissions.html?course=Artificial%20Intelligence#course">Ask about this course</a></article>
+        <article class="card course-card course--web" data-course-category="technology"><img class="card__image" src="images/computer-learning.jpg" alt="Computer used for digital design" loading="lazy"><span class="eyebrow">DIGITAL DESIGN</span><h3>Web Designing</h3><p>Design principles, layouts, typography, responsive design, HTML fundamentals and CSS styling.</p><details class="course-syllabus"><summary>Explore learning journey</summary><ul><li>Page structure and visual hierarchy</li><li>HTML and CSS foundations</li><li>Responsive page project</li></ul></details><a class="btn course-enquire" href="admissions.html?course=Web%20Designing#course">Ask about this course</a></article>
+        <article class="card course-card course--marketing" data-course-category="marketing"><img class="card__image" src="images/students-teamwork.jpg" alt="Students collaborating on a digital project" loading="lazy"><span class="eyebrow">ONLINE GROWTH</span><h3>Digital Marketing</h3><p>Audience research, campaign planning, content strategy, search basics and analytics.</p><details class="course-syllabus"><summary>Explore learning journey</summary><ul><li>Audience and campaign goals</li><li>Content strategy and search basics</li><li>Campaign metrics and insights</li></ul></details><a class="btn course-enquire" href="admissions.html?course=Digital%20Marketing#course">Ask about this course</a></article>
+        <article class="card course-card course--social" data-course-category="marketing"><img class="card__image" src="images/digital-student.jpg" alt="Student working on a digital project" loading="lazy"><span class="eyebrow">SOCIAL PLATFORMS</span><h3>Social Media Marketing</h3><p>Platform planning, content calendars, post design, engagement and performance insights.</p><details class="course-syllabus"><summary>Explore learning journey</summary><ul><li>Platform selection and content plans</li><li>Post design and community engagement</li><li>Performance insights and refinement</li></ul></details><a class="btn course-enquire" href="admissions.html?course=Social%20Media%20Marketing#course">Ask about this course</a></article>
+        <article class="card course-card course--ecommerce" data-course-category="marketing"><img class="card__image" src="images/computer-learning.jpg" alt="Learners working together at a laptop" loading="lazy"><span class="eyebrow">ONLINE BUSINESS</span><h3>E-commerce</h3><p>Learn the foundations of online selling, product listings, customer experience and digital order management.</p><details class="course-syllabus"><summary>Explore learning journey</summary><ul><li>Online store and product listing basics</li><li>Customer journey and order management</li><li>Digital promotion and store improvement</li></ul></details><a class="btn course-enquire" href="admissions.html?course=E-commerce#course">Ask about this course</a></article>
+        <p class="course-empty" id="courseEmpty" hidden>No courses match your search. Try another word or category.</p>
+      </div>
+    </section>
+    <a class="btn gold" href="admissions.html">Ask about admission</a>
+  </main>
+  <footer class="footer">© <span class="year"></span> Aisha Cahn College of Computer Science & Design Technology · Learn • Create • Lead</footer>
+</body>
+</html>

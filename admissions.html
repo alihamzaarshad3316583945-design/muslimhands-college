@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admissions | Aisha Cahn College</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="index.html"><img class="brand-logo" src="images/muslim-hands-logo.png" alt="Muslim Hands logo"><span>AISHA CAHN<small>COLLEGE OF COMPUTER SCIENCE<br>& DESIGN TECHNOLOGY</small></span></a>
+    <button class="menu" aria-label="Toggle navigation">☰</button>
+    <nav class="nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="admissions.html">Admissions</a><a href="faculty.html">Faculty</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a><a class="cta" href="login.html">Portal Login</a></nav>
+  </header>
+  <section class="pagehero">
+    <span class="eyebrow">JOIN OUR COMMUNITY</span>
+    <h1>Admissions & Enrolment</h1>
+    <p>Tell us what you would like to study and ask about the current admission process.</p>
+  </section>
+  <main class="wrap content">
+    <div class="notice">This is a front-end demo enquiry form. It does not save or send student data. Eligibility, required documents, fees, dates and board-related details must be confirmed by the college.</div>
+    <section class="two" style="margin-top:25px">
+      <div class="panel">
+        <img class="card__image" src="images/students-campus.jpg" alt="Students on a college campus" loading="lazy">
+        <h3>Programs you can ask about</h3>
+        <p>FA · ICS · FSc Pre-Medical · FSc Pre-Engineering</p>
+        <p>Practical courses: Artificial Intelligence, Fashion Designing, Tailoring, Web Designing, Digital Marketing, Social Media Marketing and E-commerce.</p>
+      </div>
+      <div class="panel">
+        <h3>Admission checklist</h3>
+        <p>Keep your latest academic result/certificate and a parent or guardian contact ready for your enquiry. The college will confirm the official application, eligibility, document copies and any photographs required.</p>
+        <p>Ask about the current subject combinations, merit criteria, fees, class schedule and intake dates before applying.</p>
+      </div>
+    </section>
+    <form class="form" data-demo style="margin-top:25px">
+      <div class="field"><label for="student-name">Student full name</label><input id="student-name" required placeholder="Full name"></div>
+      <div class="field"><label for="guardian-name">Parent / guardian name</label><input id="guardian-name" placeholder="Parent or guardian"></div>
+      <div class="field"><label for="email">Email address</label><input id="email" type="email" required placeholder="name@example.com"></div>
+      <div class="field"><label for="phone">Phone number</label><input id="phone" required placeholder="03XX-XXXXXXX"></div>
+      <div class="field"><label for="course">Program of interest</label><select id="course" required><option value="">Choose a program</option><optgroup label="Intermediate"><option>FA</option><option>ICS</option><option>FSc Pre-Medical</option><option>FSc Pre-Engineering</option></optgroup><optgroup label="Practical skills"><option>Artificial Intelligence</option><option>Fashion Designing</option><option>Tailoring</option><option>Web Designing</option><option>Digital Marketing</option><option>Social Media Marketing</option><option>E-commerce</option></optgroup></select></div>
+      <div class="field"><label for="session">Preferred class session</label><select id="session"><option value="">Ask about available schedule</option><option>Morning (availability to be confirmed)</option><option>Afternoon (availability to be confirmed)</option></select></div>
+      <div class="field full"><label for="message">Question or message</label><textarea id="message" placeholder="For example: Please share the current subject combination, eligibility, fees and class schedule."></textarea></div>
+      <div class="field full"><button class="btn gold" type="submit">Submit Enquiry</button><p class="msg" aria-live="polite"></p></div>
+    </form>
+  </main>
+  <footer class="footer">© <span class="year"></span> Aisha Cahn College of Computer Science & Design Technology · Learn • Create • Lead</footer>
+</body>
+</html>
