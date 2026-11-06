@@ -1,1 +1,115 @@
-﻿<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin Dashboard</title><link rel="stylesheet" href="css/style.css"><script defer src="js/app.js"></script></head><body><header class="header"><a class="brand" href="index.html"><img class="brand-logo" src="images/muslim-hands-logo.png" alt="Muslim Hands logo"><span>AISHA CAHN<small>COLLEGE OF COMPUTER SCIENCE<br>& DESIGN TECHNOLOGY</small></span></a><button class="menu">☰</button><nav class="nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="admissions.html">Admissions</a><a href="faculty.html">Faculty</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a><a class="cta" href="login.html">Portal Login</a></nav></header><main class="portalbg"><div class="wrap portal"><aside class="side"><h3>Admin Portal</h3><a href="admin-dashboard.html">Dashboard</a><a href="programs.html">Courses & Sessions</a><a href="admissions.html">Admissions</a><a href="contact.html">Support / Contact</a><a href="index.html">Public Website</a></aside><section><span class="eyebrow">COLLEGE MANAGEMENT</span><h2>Admin Dashboard</h2><div class="notice">Demo preview only. Numbers and timetable below are sample placeholders, not live college records.</div><div class="stats" style="margin-top:18px"><div class="stat"><span>Enrolled Students</span><strong>120</strong></div><div class="stat"><span>Active Courses</span><strong>04</strong></div><div class="stat"><span>Upcoming Sessions</span><strong>08</strong></div></div><div class="table"><table><tr><th>Course / Activity</th><th>Session</th><th>Status</th></tr><tr><td>Web Designing</td><td>Mon / Wed</td><td>Sample</td></tr><tr><td>Digital Marketing</td><td>Tue / Thu</td><td>Sample</td></tr><tr><td>Social Media Marketing</td><td>Friday</td><td>Sample</td></tr><tr><td>Tailoring</td><td>Saturday</td><td>Sample</td></tr></table></div><div class="panel" style="margin-top:18px"><h3>Portal modules</h3><p>Attendance · Timetable · Results · Fees · Notices · Student records</p><p>These require secure database integration before real use.</p></div></section></div></main><footer class="footer">© <span class="year"></span> Aisha Cahn College of Computer Science & Design Technology · Learn • Create • Lead</footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Website Control Center | Aisha Cahn College</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="index.html"><img class="brand-logo" src="images/muslim-hands-logo.png" alt="Muslim Hands logo"><span>AISHA CAHN<small>WEBSITE CONTROL CENTER</small></span></a>
+    <button class="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="nav"><a href="index.html">View website</a><a href="#site-editor">Edit pages</a><a href="#program-manager">Programs</a><a href="#creator-profile">Creator profile</a></nav>
+  </header>
+  <main class="admin-page">
+    <div class="wrap admin-shell">
+      <aside class="admin-sidebar">
+        <span class="eyebrow">CONTROL CENTER</span>
+        <h2>Manage your site</h2>
+        <nav aria-label="Admin sections">
+          <a href="#overview">Overview</a>
+          <a href="#site-editor">Website content</a>
+          <a href="#program-manager">Programs</a>
+          <a href="#creator-profile">Creator profile</a>
+        </nav>
+        <a class="admin-preview-link" href="index.html">↗ Open public website</a>
+      </aside>
+      <div class="admin-content">
+        <section class="admin-heading" id="overview">
+          <span class="eyebrow">WEBSITE MANAGEMENT</span>
+          <h1>Your website, <em>your control.</em></h1>
+          <p>Edit the public homepage, about page, programs and creator profile from one place.</p>
+        </section>
+        <div class="notice admin-demo-notice"><strong>Browser demo:</strong> Changes are saved only in this browser on this device. This page has no secure admin login or online publishing; connect a backend before using it as a live multi-user website.</div>
+        <p class="admin-status" id="adminStatus" role="status" aria-live="polite"></p>
+        <div class="stats admin-stats">
+          <div class="stat"><span>Managed programs</span><strong id="programTotal">5</strong></div>
+          <div class="stat"><span>Editable pages</span><strong>7</strong></div>
+          <div class="stat"><span>Storage</span><strong class="admin-local-label">This browser</strong></div>
+        </div>
+
+        <section class="admin-panel" id="site-editor">
+          <div class="admin-section-heading"><div><span class="eyebrow">PAGE CONTENT</span><h2>Website editor</h2></div><span class="admin-badge">7 pages</span></div>
+          <p>Update key text shown on the public pages. Changes appear the next time those pages load in this browser.</p>
+          <form id="siteSettingsForm" class="admin-form">
+            <fieldset>
+              <legend>Homepage hero</legend>
+              <div class="field"><label for="homeKicker">Small heading</label><input id="homeKicker" name="homeKicker" required maxlength="70"></div>
+              <div class="field"><label for="homeTitle">Main heading</label><input id="homeTitle" name="homeTitle" required maxlength="100"></div>
+              <div class="field field-full"><label for="homeDescription">Introduction</label><textarea id="homeDescription" name="homeDescription" required maxlength="320"></textarea></div>
+            </fieldset>
+            <fieldset>
+              <legend>About page</legend>
+              <div class="field"><label for="aboutTitle">Page heading</label><input id="aboutTitle" name="aboutTitle" required maxlength="100"></div>
+              <div class="field field-full"><label for="aboutDescription">About text</label><textarea id="aboutDescription" name="aboutDescription" required maxlength="500"></textarea></div>
+            </fieldset>
+            <fieldset>
+              <legend>Other page headings and introductions</legend>
+              <div class="field"><label for="programsPageTitle">Programs heading</label><input id="programsPageTitle" name="programsPageTitle" required maxlength="100"></div>
+              <div class="field"><label for="programsPageDescription">Programs introduction</label><input id="programsPageDescription" name="programsPageDescription" required maxlength="240"></div>
+              <div class="field"><label for="admissionsPageTitle">Admissions heading</label><input id="admissionsPageTitle" name="admissionsPageTitle" required maxlength="100"></div>
+              <div class="field"><label for="admissionsPageDescription">Admissions introduction</label><input id="admissionsPageDescription" name="admissionsPageDescription" required maxlength="240"></div>
+              <div class="field"><label for="facultyPageTitle">Faculty heading</label><input id="facultyPageTitle" name="facultyPageTitle" required maxlength="100"></div>
+              <div class="field"><label for="facultyPageDescription">Faculty introduction</label><input id="facultyPageDescription" name="facultyPageDescription" required maxlength="240"></div>
+              <div class="field"><label for="galleryPageTitle">Gallery heading</label><input id="galleryPageTitle" name="galleryPageTitle" required maxlength="100"></div>
+              <div class="field"><label for="galleryPageDescription">Gallery introduction</label><input id="galleryPageDescription" name="galleryPageDescription" required maxlength="240"></div>
+              <div class="field"><label for="contactPageTitle">Contact heading</label><input id="contactPageTitle" name="contactPageTitle" required maxlength="100"></div>
+              <div class="field"><label for="contactPageDescription">Contact introduction</label><input id="contactPageDescription" name="contactPageDescription" required maxlength="240"></div>
+            </fieldset>
+            <fieldset>
+              <legend>Site-wide announcement <span>(leave empty to hide)</span></legend>
+              <div class="field field-full"><label for="announcement">Announcement message</label><input id="announcement" name="announcement" maxlength="180" placeholder="For example: Admissions enquiries are now open."></div>
+            </fieldset>
+            <div class="admin-actions"><button class="btn gold" type="submit">Save website content</button></div>
+          </form>
+        </section>
+
+        <section class="admin-panel" id="program-manager">
+          <div class="admin-section-heading"><div><span class="eyebrow">COURSES & STUDY</span><h2>Program manager</h2></div><span class="admin-badge">Add · Edit · Remove</span></div>
+          <p>Program changes appear on the homepage, programs page and admissions form in this browser.</p>
+          <div id="programAdminList" class="program-admin-list"></div>
+          <form id="addProgramForm" class="admin-add-program">
+            <h3>Add a program</h3>
+            <div class="admin-program-fields">
+              <div class="field"><label for="newProgramName">Program name</label><input id="newProgramName" name="name" required maxlength="60" placeholder="For example: Graphic Design"></div>
+              <div class="field field-full"><label for="newProgramDescription">Short description</label><textarea id="newProgramDescription" name="description" required maxlength="240" placeholder="Briefly describe this program"></textarea></div>
+            </div>
+            <button class="btn gold" type="submit">Add program</button>
+          </form>
+        </section>
+
+        <section class="admin-panel creator-admin-panel" id="creator-profile">
+          <div class="admin-section-heading"><div><span class="eyebrow">ABOUT THIS WEBSITE</span><h2>Website creator</h2></div><span class="admin-badge">Shown on homepage</span></div>
+          <div class="creator-admin-layout">
+            <img class="creator-admin-image" src="images/website%20creator.png" alt="Website creator Ali Hamza">
+            <form id="creatorProfileForm" class="admin-form creator-admin-form">
+              <div class="field"><label for="creatorName">Name</label><input id="creatorName" name="creatorName" required maxlength="60"></div>
+              <div class="field"><label for="creatorLocation">From</label><input id="creatorLocation" name="creatorLocation" required maxlength="80"></div>
+              <div class="field field-full"><label for="creatorBio">Profile introduction</label><textarea id="creatorBio" name="creatorBio" required maxlength="240"></textarea></div>
+              <div class="field-full"><button class="btn gold" type="submit">Save creator profile</button></div>
+            </form>
+          </div>
+        </section>
+
+        <div class="admin-reset-row">
+          <p>Restore the original demo content and program list for this browser.</p>
+          <button class="btn admin-reset-button" id="resetSiteSettings" type="button">Reset demo content</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">© <span class="year"></span> Aisha Cahn College · Website control center demo</footer>
+</body>
+</html>

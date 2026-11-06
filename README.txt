@@ -11,6 +11,7 @@ PUBLISH ON VERCEL
 2. Select Other as the framework preset. Leave the build command and install command empty.
 3. Set the output directory to "." (the repository root), then deploy.
 4. vercel.json enables clean URLs. The existing .html links continue to work.
+5. To restrict the entire site, open the Vercel project, go to Settings > Deployment Protection, select Vercel Authentication and set the protection scope to All Deployments. Give deployment-view access only to the Vercel account(s) used by the administrator. This protects every page, including the public college website, and is configured in Vercel rather than in this repository.
 
 PAGES
 - Home: index.html
@@ -22,6 +23,8 @@ PAGES
 - Contact: contact.html
 - Portal login: login.html
 - Student, Teacher, and Admin dashboard previews: student-dashboard.html, teacher-dashboard.html, admin-dashboard.html
+- Website control center demo: admin-dashboard.html
+- Website creator profile: ALI HAMZA · Azad Kashmir, shown on the homepage and admin dashboard
 
 DESIGN AND MOTION
 - Responsive black, midnight-blue, champagne-gold, and electric-blue theme.
@@ -33,6 +36,8 @@ DESIGN AND MOTION
 
 IMPORTANT LIMITATIONS
 - This is a front-end demonstration. There is no Supabase or other backend configuration in this project.
+- Website control center edits are stored in the current browser only. They are not shared with visitors or published to Vercel; secure login and a backend/database are required for live administration.
+- Vercel Authentication protects the whole deployment when configured as described above; it does not make browser-only website edits shared or publish them.
 - Portal login only demonstrates navigation; it is not authentication.
 - Admission and contact forms provide a demo confirmation but do not save or send data. A secure backend is needed for real submissions.
 - Dashboard counts and timetable are sample placeholders, not live records. No verified enrollment/statistics were supplied, so none are presented as actual college metrics.

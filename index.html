@@ -12,7 +12,20 @@
     <canvas class="intro-particles" id="introParticles" aria-hidden="true"></canvas>
     <div class="intro-light" aria-hidden="true"></div>
     <div class="intro-content">
-      <img class="intro-logo" src="images/muslim-hands-logo.png" alt="">
+      <div class="art__logo-wrap intro-logo-wrap">
+        <img class="art__logo intro-logo" src="images/muslim-hands-logo.png" alt="">
+        <svg class="art__wheel-text" viewBox="0 0 200 200" aria-hidden="true">
+          <path class="art__lettering-mask" fill-rule="evenodd" d="M100 8a92 92 0 1 1 0 184a92 92 0 1 1 0-184z M100 30a70 70 0 1 1 0 140a70 70 0 1 1 0-140z"></path>
+          <defs>
+            <path id="introTopArc" d="M16 100a84 84 0 0 1 168 0"></path>
+            <path id="introBottomArc" d="M16 100a84 84 0 0 0 168 0"></path>
+          </defs>
+          <g class="art__wheel">
+            <text class="art__wheel-top"><textPath href="#introTopArc" startOffset="50%" text-anchor="middle">MUSLIM HANDS</textPath></text>
+            <text class="art__wheel-bottom"><textPath href="#introBottomArc" startOffset="50%" text-anchor="middle">UNITED FOR THE NEEDY</textPath></text>
+          </g>
+        </svg>
+      </div>
       <p class="eyebrow">LEARN · CREATE · LEAD</p>
       <p class="intro-name" aria-label="Aisha Cahn College">
         <span>AISHA CAHN</span>
@@ -31,36 +44,23 @@
   <main>
     <section class="hero">
       <div>
-        <span class="eyebrow">LEARN · CREATE · LEAD</span>
-        <h1 tabindex="-1">Aisha Cahn <em>College</em></h1>
-        <p>Build your future with intermediate programs in arts, computer science and sciences, alongside practical creative and digital skills.</p>
+        <span class="eyebrow" data-site-field="homeKicker">LEARN · CREATE · LEAD</span>
+        <h1 tabindex="-1" data-site-field="homeTitle">Aisha Cahn College</h1>
+        <p data-site-field="homeDescription">Build your future with intermediate programs in arts, computer science and sciences, alongside practical creative and digital skills.</p>
         <a class="btn gold" href="programs.html">Explore Programs</a>
         <a class="btn" href="admissions.html">Ask About Admission</a>
-      </div>
-      <div class="art" role="img" aria-label="Aisha Cahn College animated gold emblem">
-        <img class="art__photo" src="images/college-building.png" alt="">
-        <div class="art__halo" aria-hidden="true"></div>
-        <div class="art__cube" aria-hidden="true">
-          <span class="art__face art__face--front">AC</span>
-          <span class="art__face art__face--back">AC</span>
-          <span class="art__face art__face--right">✦</span>
-          <span class="art__face art__face--left">✦</span>
-          <span class="art__face art__face--top">A</span>
-          <span class="art__face art__face--bottom">C</span>
-        </div>
-        <img class="art__logo" src="images/muslim-hands-logo.png" alt="">
-        <span class="art__caption" aria-hidden="true">LEARN · CREATE · LEAD</span>
       </div>
     </section>
     <section class="wrap campus-feature">
       <img class="campus-feature__image" src="images/college-building.png" alt="Muslim Hands College building">
       <div class="campus-feature__caption"><span class="eyebrow">CAMPUS</span><h2>Our <em>College</em></h2></div>
     </section>
-    <section class="wrap section center">
+    <section class="wrap section center intermediate-programs">
       <span class="eyebrow">INTERMEDIATE PROGRAMS</span>
       <h2>Choose your <em>path</em></h2>
-      <div class="grid">
+      <div class="grid" data-program-list="home">
         <article class="card"><img class="card__image" src="images/study-notes.jpg" alt="Student studying and taking notes" loading="lazy"><div class="symbol">✦</div><h3>FA</h3><p>Humanities and arts studies. Elective subjects are selected according to the available college and board combinations.</p><a href="programs.html">Program details →</a></article>
+        <article class="card"><img class="card__image" src="images/computer-learning.jpg" alt="Student learning with a computer" loading="lazy"><div class="symbol">⌘</div><h3>FA-IT</h3><p>Intermediate arts studies with an information technology focus. Ask the college about available subjects and board-approved combinations.</p><a href="programs.html">Program details →</a></article>
         <article class="card"><img class="card__image" src="images/computer-learning.jpg" alt="Computer-based learning" loading="lazy"><div class="symbol">⌘</div><h3>ICS</h3><p>Computer science with mathematics and a supporting science or elective subject, depending on the approved combination.</p><a href="programs.html">Program details →</a></article>
         <article class="card"><img class="card__image" src="images/classroom.jpg" alt="Students learning together in a classroom" loading="lazy"><div class="symbol">✚</div><h3>FSc Pre-Medical</h3><p>Biology, Chemistry and Physics for students interested in life sciences and related further studies.</p><a href="programs.html">Program details →</a></article>
         <article class="card"><img class="card__image" src="images/digital-student.jpg" alt="Student working on a science and technology project" loading="lazy"><div class="symbol">△</div><h3>FSc Pre-Engineering</h3><p>Mathematics, Chemistry and Physics for students interested in engineering and other quantitative fields.</p><a href="programs.html">Program details →</a></article>
@@ -112,6 +112,18 @@
         <img src="images/college-building.png" alt="Muslim Hands College building" loading="lazy">
         <span>Explore campus life <b aria-hidden="true">↗</b></span>
       </a>
+    </section>
+    <section class="creator-profile-section" aria-labelledby="creatorProfileHeading">
+      <div class="wrap creator-profile">
+        <img class="creator-profile__image" src="images/website%20creator.png" alt="Website creator">
+        <div class="creator-profile__copy">
+          <span class="eyebrow">MEET THE WEBSITE CREATOR</span>
+          <h2 id="creatorProfileHeading" data-site-field="creatorName">ALI HAMZA</h2>
+          <p class="creator-profile__location">From <span data-site-field="creatorLocation">Azad Kashmir</span></p>
+          <p data-site-field="creatorBio">Designed and built this website with care for the college community.</p>
+          <a href="admin-dashboard.html">Website control center <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
     </section>
     <section class="section">
       <div class="wrap two">
