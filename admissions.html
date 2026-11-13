@@ -3,7 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Admissions | Aisha Cahn College</title>
+  <meta name="description" content="Learn about programs and admission enquiries at Aisha Cahn College. Confirm eligibility, fees, required documents and current dates with the college.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Admissions & Enrolment | Aisha Cahn College">
+  <meta property="og:description" content="Learn about programs and admission enquiries at Aisha Cahn College. Confirm eligibility, fees, required documents and current dates with the college.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Admissions & Enrolment | Aisha Cahn College">
+  <meta name="twitter:description" content="Learn about programs and admission enquiries at Aisha Cahn College. Confirm eligibility, fees, required documents and current dates with the college.">
+  <title>Admissions &amp; Enrolment | Aisha Cahn College</title>
   <link rel="stylesheet" href="css/style.css">
   <script defer src="js/app.js"></script>
 </head>
@@ -19,10 +26,10 @@
     <p data-site-field="admissionsPageDescription">Tell us what you would like to study and ask about the current admission process.</p>
   </section>
   <main class="wrap content">
-    <div class="notice">This is a front-end demo enquiry form. It does not save or send student data. Eligibility, required documents, fees, dates and board-related details must be confirmed by the college.</div>
+    <div class="notice">Send an enquiry to the college about available programs. Eligibility, required documents, fees, dates and board-related details must be confirmed by the college.</div>
     <section class="two" style="margin-top:25px">
       <div class="panel">
-        <img class="card__image" src="images/students-campus.jpg" alt="Students on a college campus" loading="lazy">
+        <img class="card__image" src="images/college-campus.png" alt="Aisha Cahn College campus building" loading="lazy">
         <h3>Programs you can ask about</h3>
         <p>FA · FA-IT · ICS · FSc Pre-Medical · FSc Pre-Engineering</p>
         <p>Practical courses: Artificial Intelligence, Fashion Designing, Tailoring, Web Designing, Digital Marketing, Social Media Marketing and E-commerce.</p>
@@ -33,14 +40,16 @@
         <p>Ask about the current subject combinations, merit criteria, fees, class schedule and intake dates before applying.</p>
       </div>
     </section>
-    <form class="form" data-demo style="margin-top:25px">
-      <div class="field"><label for="student-name">Student full name</label><input id="student-name" required placeholder="Full name"></div>
-      <div class="field"><label for="guardian-name">Parent / guardian name</label><input id="guardian-name" placeholder="Parent or guardian"></div>
-      <div class="field"><label for="email">Email address</label><input id="email" type="email" required placeholder="name@example.com"></div>
-      <div class="field"><label for="phone">Phone number</label><input id="phone" required placeholder="03XX-XXXXXXX"></div>
-      <div class="field"><label for="course">Program of interest</label><select id="course" required data-program-select><option value="">Choose a program</option><optgroup label="Intermediate"><option>FA</option><option>FA-IT</option><option>ICS</option><option>FSc Pre-Medical</option><option>FSc Pre-Engineering</option></optgroup><optgroup label="Practical skills"><option>Artificial Intelligence</option><option>Fashion Designing</option><option>Tailoring</option><option>Web Designing</option><option>Digital Marketing</option><option>Social Media Marketing</option><option>E-commerce</option></optgroup></select></div>
-      <div class="field"><label for="session">Preferred class session</label><select id="session"><option value="">Ask about available schedule</option><option>Morning (availability to be confirmed)</option><option>Afternoon (availability to be confirmed)</option></select></div>
-      <div class="field full"><label for="message">Question or message</label><textarea id="message" placeholder="For example: Please share the current subject combination, eligibility, fees and class schedule."></textarea></div>
+    <form class="form" data-submission-kind="admission" style="margin-top:25px">
+      <div class="form-trap" aria-hidden="true"><label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <div class="field"><label for="student-name">Student full name</label><input id="student-name" name="studentName" required maxlength="100" placeholder="Full name"></div>
+      <div class="field"><label for="guardian-name">Parent / guardian name</label><input id="guardian-name" name="guardianName" maxlength="100" placeholder="Parent or guardian"></div>
+      <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" required maxlength="254" placeholder="name@example.com"></div>
+      <div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" required maxlength="40" placeholder="03XX-XXXXXXX"></div>
+      <div class="field"><label for="course">Program of interest</label><select id="course" name="course" required data-program-select><option value="">Choose a program</option><optgroup label="Intermediate"><option>FA</option><option>FA-IT</option><option>ICS</option><option>FSc Pre-Medical</option><option>FSc Pre-Engineering</option></optgroup><optgroup label="Practical skills"><option>Artificial Intelligence</option><option>Fashion Designing</option><option>Tailoring</option><option>Web Designing</option><option>Digital Marketing</option><option>Social Media Marketing</option><option>E-commerce</option></optgroup></select></div>
+      <div class="field"><label for="session">Preferred class session</label><select id="session" name="session"><option value="">Ask about available schedule</option><option>Morning (availability to be confirmed)</option><option>Afternoon (availability to be confirmed)</option></select></div>
+      <div class="field full"><label for="message">Question or message</label><textarea id="message" name="message" maxlength="2000" placeholder="For example: Please share the current subject combination, eligibility, fees and class schedule."></textarea></div>
+      <div class="field full"><p class="submission-consent">By submitting, you agree that the college can store these details to respond to your enquiry. Please do not include sensitive information.</p></div>
       <div class="field full"><button class="btn gold" type="submit">Submit Enquiry</button><p class="msg" aria-live="polite"></p></div>
     </form>
   </main>

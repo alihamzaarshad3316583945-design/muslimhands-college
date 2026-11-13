@@ -163,9 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const defaultSettings = {
-    homeKicker: 'LEARN · CREATE · LEAD',
-    homeTitle: 'Aisha Cahn College',
-    homeDescription: 'Build your future with intermediate programs in arts, computer science and sciences, alongside practical creative and digital skills.',
+    homeKicker: 'LEARN · INNOVATE · EXCEL',
+    homeTitle: 'Where Learning Becomes a Journey',
+    homeDescription: 'At Aisha Cahn College of Computer Science & Design Technology, learning begins with a question, grows through exploration, and becomes meaningful when you build something with what you know.',
     aboutTitle: 'Education with a creative edge',
     aboutDescription: 'Aisha Cahn College of Computer Science & Design Technology brings together academic pathways and practical learning. Students can explore intermediate programs and creative and digital skills courses.',
     programsPageTitle: 'Find the right path for you',
@@ -192,11 +192,31 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
   const settingsKey = 'aisha-college-site-settings-v1';
   const programsKey = 'aisha-college-site-programs-v1';
+  const localPreview = window.location.protocol === 'file:';
+  const adminPage = Boolean(document.querySelector('#adminStatus'));
   const adminStatus = document.querySelector('#adminStatus');
   const setAdminStatus = (message, isError = false) => {
     if (!adminStatus) return;
     adminStatus.textContent = message;
     adminStatus.classList.toggle('is-error', isError);
+  };
+  const apiRequest = async (path, options = {}) => {
+    const { admin, ...requestOptions } = options;
+    const headers = { Accept: 'application/json', ...(options.headers || {}) };
+    if (options.body) headers['Content-Type'] = 'application/json';
+    if (admin) headers['X-Admin-Request'] = '1';
+    const response = await fetch(path, {
+      ...requestOptions,
+      headers,
+      credentials: 'same-origin'
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const error = new Error(result.error || `Request failed (${response.status}).`);
+      error.status = response.status;
+      throw error;
+    }
+    return result;
   };
   const readStoredValue = (key, fallback, isValid) => {
     try {
@@ -211,7 +231,19 @@ document.addEventListener('DOMContentLoaded', () => {
       return fallback;
     }
   };
-  const saveStoredValue = (key, value) => {
+  const saveStoredValue = async (key, value) => {
+    if (!localPreview) {
+      try {
+        const path = key === settingsKey ? '/api/content' : '/api/programs';
+        const body = key === settingsKey ? value : { programs: value };
+        await apiRequest(path, { method: 'PUT', body: JSON.stringify(body), admin: true });
+        return true;
+      } catch (error) {
+        console.error('Unable to save website data to the server.', error);
+        setAdminStatus(error.message || 'Could not save changes to the server.', true);
+        return false;
+      }
+    }
     try {
       window.localStorage.setItem(key, JSON.stringify(value));
       return true;
@@ -225,13 +257,24 @@ document.addEventListener('DOMContentLoaded', () => {
     Object.keys(defaultSettings).every(key => typeof value[key] === 'string');
   const isProgramList = value => Array.isArray(value) &&
     value.every(program => program && typeof program.name === 'string' && typeof program.description === 'string');
-  let siteSettings = readStoredValue(settingsKey, defaultSettings, isSettingsObject);
-  let sitePrograms = readStoredValue(programsKey, defaultPrograms, isProgramList);
+  let siteSettings = localPreview ? readStoredValue(settingsKey, defaultSettings, isSettingsObject) : defaultSettings;
+  let sitePrograms = localPreview ? readStoredValue(programsKey, defaultPrograms, isProgramList) : defaultPrograms;
 
   const renderSiteSettings = () => {
     document.querySelectorAll('[data-site-field]').forEach(element => {
       const key = element.dataset.siteField;
-      if (typeof siteSettings[key] === 'string') element.textContent = siteSettings[key];
+      if (typeof siteSettings[key] !== 'string') return;
+      if (key === 'homeTitle') {
+        const words = siteSettings[key].trim().split(/\s+/);
+        const emphasizedWord = words.pop();
+        if (words.length && emphasizedWord) {
+          const emphasis = document.createElement('em');
+          emphasis.textContent = emphasizedWord;
+          element.replaceChildren(document.createTextNode(`${words.join(' ')} `), emphasis);
+          return;
+        }
+      }
+      element.textContent = siteSettings[key];
     });
 
     if (siteSettings.announcement) {
@@ -268,6 +311,9 @@ document.addEventListener('DOMContentLoaded', () => {
     name.toLocaleLowerCase().includes('medical') ? '✚' : '✦';
   const renderPrograms = () => {
     const programNames = sitePrograms.map(program => program.name).join(' / ');
+    document.querySelectorAll('[data-intermediate-count]').forEach(element => {
+      element.textContent = String(sitePrograms.length);
+    });
     document.querySelectorAll('[data-program-names]').forEach(element => {
       element.textContent = `INTERMEDIATE · ${programNames}`;
     });
@@ -376,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
       removeButton.setAttribute('aria-label', `Remove ${program.name}`);
       actions.append(saveButton, removeButton);
       form.append(nameField, descriptionField, actions);
-      form.addEventListener('submit', event => {
+      form.addEventListener('submit', async event => {
         event.preventDefault();
         const values = new FormData(form);
         const updatedPrograms = sitePrograms.map((item, itemIndex) => itemIndex === index
@@ -386,20 +432,20 @@ document.addEventListener('DOMContentLoaded', () => {
           setAdminStatus('A program with that name already exists.', true);
           return;
         }
-        if (saveStoredValue(programsKey, updatedPrograms)) {
+        if (await saveStoredValue(programsKey, updatedPrograms)) {
           sitePrograms = updatedPrograms;
           renderPrograms();
           renderAdminPrograms();
-          setAdminStatus('Program changes saved in this browser.');
+          setAdminStatus(localPreview ? 'Program changes saved in this browser.' : 'Program changes saved.');
         }
       });
-      removeButton.addEventListener('click', () => {
+      removeButton.addEventListener('click', async () => {
         const updatedPrograms = sitePrograms.filter((_, itemIndex) => itemIndex !== index);
-        if (saveStoredValue(programsKey, updatedPrograms)) {
+        if (await saveStoredValue(programsKey, updatedPrograms)) {
           sitePrograms = updatedPrograms;
           renderPrograms();
           renderAdminPrograms();
-          setAdminStatus(`${program.name} removed from this browser's website preview.`);
+          setAdminStatus(localPreview ? `${program.name} removed from this browser's website preview.` : `${program.name} removed.`);
         }
       });
       list.append(form);
@@ -412,7 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderPrograms();
   renderAdminPrograms();
 
-  document.querySelector('#siteSettingsForm')?.addEventListener('submit', event => {
+  document.querySelector('#siteSettingsForm')?.addEventListener('submit', async event => {
     event.preventDefault();
     const form = event.currentTarget;
     const values = new FormData(form);
@@ -420,30 +466,31 @@ document.addEventListener('DOMContentLoaded', () => {
     ['homeKicker', 'homeTitle', 'homeDescription', 'aboutTitle', 'aboutDescription', 'programsPageTitle', 'programsPageDescription', 'admissionsPageTitle', 'admissionsPageDescription', 'facultyPageTitle', 'facultyPageDescription', 'galleryPageTitle', 'galleryPageDescription', 'contactPageTitle', 'contactPageDescription', 'announcement'].forEach(key => {
       updatedSettings[key] = String(values.get(key)).trim();
     });
-    if (saveStoredValue(settingsKey, updatedSettings)) {
+    if (await saveStoredValue(settingsKey, updatedSettings)) {
       siteSettings = updatedSettings;
       renderSiteSettings();
-      setAdminStatus('Website content saved in this browser. Reload the public pages to preview it.');
+      setAdminStatus(localPreview ? 'Website content saved in this browser. Reload the public pages to preview it.' : 'Website content saved.');
     }
   });
 
-  document.querySelector('#creatorProfileForm')?.addEventListener('submit', event => {
+  document.querySelector('#creatorProfileForm')?.addEventListener('submit', async event => {
     event.preventDefault();
     const values = new FormData(event.currentTarget);
     const updatedSettings = { ...siteSettings };
     ['creatorName', 'creatorLocation', 'creatorBio'].forEach(key => {
       updatedSettings[key] = String(values.get(key)).trim();
     });
-    if (saveStoredValue(settingsKey, updatedSettings)) {
+    if (await saveStoredValue(settingsKey, updatedSettings)) {
       siteSettings = updatedSettings;
       renderSiteSettings();
-      setAdminStatus('Creator profile saved in this browser.');
+      setAdminStatus(localPreview ? 'Creator profile saved in this browser.' : 'Creator profile saved.');
     }
   });
 
-  document.querySelector('#addProgramForm')?.addEventListener('submit', event => {
+  document.querySelector('#addProgramForm')?.addEventListener('submit', async event => {
     event.preventDefault();
-    const values = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const values = new FormData(form);
     const name = String(values.get('name')).trim();
     const description = String(values.get('description')).trim();
     if (sitePrograms.some(program => program.name.toLocaleLowerCase() === name.toLocaleLowerCase())) {
@@ -452,33 +499,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const newProgram = { name, description, details: description, category: 'INTERMEDIATE PROGRAM', image: 'images/digital-student.jpg' };
     const updatedPrograms = [...sitePrograms, newProgram];
-    if (saveStoredValue(programsKey, updatedPrograms)) {
+    if (await saveStoredValue(programsKey, updatedPrograms)) {
       sitePrograms = updatedPrograms;
-      event.currentTarget.reset();
+      form.reset();
       renderPrograms();
       renderAdminPrograms();
-      setAdminStatus(`${name} added to this browser's website preview.`);
+      setAdminStatus(localPreview ? `${name} added to this browser's website preview.` : `${name} added.`);
     }
   });
 
-  document.querySelector('#resetSiteSettings')?.addEventListener('click', () => {
-    if (!window.confirm('Reset saved website content and programs in this browser?')) return;
+  document.querySelector('#resetSiteSettings')?.addEventListener('click', async () => {
+    const confirmation = localPreview
+      ? 'Reset saved website content and programs in this browser?'
+      : 'Reset the shared website content and program list for every visitor?';
+    if (!window.confirm(confirmation)) return;
     try {
-      window.localStorage.removeItem(settingsKey);
-      window.localStorage.removeItem(programsKey);
-      siteSettings = defaultSettings;
-      sitePrograms = defaultPrograms;
+      if (localPreview) {
+        window.localStorage.removeItem(settingsKey);
+        window.localStorage.removeItem(programsKey);
+        siteSettings = defaultSettings;
+        sitePrograms = defaultPrograms;
+      } else {
+        const result = await apiRequest('/api/reset', { method: 'POST', admin: true, body: '{}' });
+        siteSettings = result.settings;
+        sitePrograms = result.programs;
+      }
       renderSiteSettings();
       renderPrograms();
       renderAdminPrograms();
-      setAdminStatus('Demo content and programs have been reset in this browser.');
+      setAdminStatus(localPreview ? 'Demo content and programs have been reset in this browser.' : 'Website content and programs have been reset.');
     } catch (error) {
-      console.error('Unable to reset website settings in browser storage.', error);
-      setAdminStatus('Could not reset browser storage. Check browser storage permissions.', true);
+      console.error('Unable to reset website content.', error);
+      setAdminStatus(error.message || 'Could not reset website content.', true);
     }
   });
 
   window.addEventListener('storage', event => {
+    if (!localPreview) return;
     if (event.key === settingsKey) {
       siteSettings = readStoredValue(settingsKey, defaultSettings, isSettingsObject);
       renderSiteSettings();
@@ -490,14 +547,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  document.querySelectorAll('[data-demo]').forEach(form => {
-    form.addEventListener('submit', event => {
+  document.querySelectorAll('[data-submission-kind]').forEach(form => {
+    form.addEventListener('submit', async event => {
       event.preventDefault();
-      form.classList.add('is-submitted');
       const message = form.querySelector('.msg');
-      if (message) {
-        message.setAttribute('role', 'status');
-        message.textContent = 'Demo only: your enquiry was not sent or saved. A secure backend is needed for real submissions.';
+      if (localPreview) {
+        if (message) message.textContent = 'The live enquiry form is available after deploying this site with its backend.';
+        return;
+      }
+      const values = Object.fromEntries(new FormData(form).entries());
+      values.kind = form.dataset.submissionKind;
+      try {
+        const result = await apiRequest('/api/submissions', { method: 'POST', body: JSON.stringify(values) });
+        form.classList.add('is-submitted');
+        form.reset();
+        if (message) message.textContent = result.message;
+      } catch (error) {
+        console.error('Unable to submit enquiry.', error);
+        if (message) message.textContent = error.message || 'Your enquiry could not be sent. Please try again later.';
       }
     });
   });
@@ -545,23 +612,163 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const renderSubmissions = submissions => {
+    const list = document.querySelector('#submissionList');
+    if (!list) return;
+    list.replaceChildren();
+    if (!submissions.length) {
+      const empty = document.createElement('p');
+      empty.textContent = 'No enquiries have been received yet.';
+      list.append(empty);
+      return;
+    }
+    submissions.forEach(submission => {
+      const article = document.createElement('article');
+      article.className = 'submission-row';
+      const heading = document.createElement('h3');
+      heading.textContent = submission.kind === 'admission' ? 'Admission enquiry' : 'Contact message';
+      const date = document.createElement('time');
+      date.dateTime = submission.createdAt;
+      date.textContent = new Date(submission.createdAt).toLocaleString();
+      const details = document.createElement('dl');
+      Object.entries(submission.data).forEach(([key, value]) => {
+        const term = document.createElement('dt');
+        term.textContent = key.replace(/([A-Z])/g, ' $1').replace(/^./, letter => letter.toUpperCase());
+        const description = document.createElement('dd');
+        description.textContent = value || '—';
+        details.append(term, description);
+      });
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'btn program-remove-button';
+      remove.textContent = 'Delete enquiry';
+      remove.addEventListener('click', async () => {
+        if (!window.confirm('Delete this enquiry permanently?')) return;
+        try {
+          await apiRequest('/api/submissions', { method: 'DELETE', body: JSON.stringify({ id: submission.id }), admin: true });
+          article.remove();
+          if (!list.querySelector('.submission-row')) renderSubmissions([]);
+        } catch (error) {
+          console.error('Unable to delete enquiry.', error);
+          setAdminStatus(error.message || 'Could not delete the enquiry.', true);
+        }
+      });
+      article.append(heading, date, details, remove);
+      list.append(article);
+    });
+  };
+
+  const loadBackendData = async () => {
+    if (localPreview) {
+      document.body.classList.add('admin-ready');
+      return;
+    }
+    try {
+      if (adminPage) {
+        const session = await apiRequest('/api/admin_status', { admin: true });
+        if (!session.authenticated) {
+          window.location.replace('login.html?admin=1');
+          return;
+        }
+        document.body.classList.add('admin-ready');
+        const [content, programs, submissions] = await Promise.all([
+          apiRequest('/api/content'),
+          apiRequest('/api/programs'),
+          apiRequest('/api/submissions', { admin: true })
+        ]);
+        if (!isSettingsObject(content.settings) || !isProgramList(programs.programs)) {
+          throw new TypeError('The server returned invalid website content.');
+        }
+        siteSettings = content.settings;
+        sitePrograms = programs.programs;
+        renderSiteSettings();
+        renderPrograms();
+        renderAdminPrograms();
+        renderSubmissions(submissions.submissions);
+        return;
+      }
+      const [content, programs] = await Promise.all([
+        apiRequest('/api/content'),
+        apiRequest('/api/programs')
+      ]);
+      if (!isSettingsObject(content.settings) || !isProgramList(programs.programs)) {
+        throw new TypeError('The server returned invalid website content.');
+      }
+      siteSettings = content.settings;
+      sitePrograms = programs.programs;
+      renderSiteSettings();
+      renderPrograms();
+    } catch (error) {
+      console.error('Unable to load website data from the backend.', error);
+      if (adminPage) {
+        setAdminStatus(error.message || 'Website data could not be loaded.', true);
+        document.body.classList.add('admin-ready');
+      } else {
+        const warning = document.createElement('aside');
+        warning.className = 'site-announcement';
+        warning.setAttribute('role', 'status');
+        warning.textContent = 'Some website information could not be loaded. Please try again later.';
+        document.querySelector('.header')?.insertAdjacentElement('afterend', warning);
+      }
+    }
+  };
+
+  document.querySelector('#adminLogout')?.addEventListener('click', async event => {
+    event.preventDefault();
+    try {
+      await apiRequest('/api/logout', { method: 'POST', admin: true, body: '{}' });
+      window.location.replace('login.html?admin=1');
+    } catch (error) {
+      console.error('Unable to sign out from the admin dashboard.', error);
+      setAdminStatus(error.message || 'Could not sign out. Close this browser tab.', true);
+    }
+  });
+
+  loadBackendData();
+
   const loginForm = document.querySelector('#loginForm');
   if (loginForm) {
-    loginForm.addEventListener('submit', event => {
+    const query = new URLSearchParams(window.location.search);
+    const roleSelect = document.querySelector('#role');
+    const message = document.querySelector('#msg');
+    if (query.get('admin') === '1' && roleSelect) {
+      roleSelect.value = 'Admin';
+      const description = loginForm.querySelector('form > p, p');
+      if (description) description.textContent = 'Sign in with the administrator account configured for this website.';
+    }
+    loginForm.addEventListener('submit', async event => {
       event.preventDefault();
-      const role = document.querySelector('#role').value;
-      document.querySelector('#msg').textContent = 'Opening demo portal…';
-      setTimeout(() => {
-        location.href = `${role.toLowerCase()}-dashboard.html`;
+      const role = roleSelect.value;
+      if (role.toLowerCase() === 'admin') {
+        const values = new FormData(loginForm);
+        message.textContent = 'Checking administrator sign-in…';
+        try {
+          await apiRequest('/api/login', {
+            method: 'POST',
+            body: JSON.stringify({
+              email: String(values.get('email') || ''),
+              password: String(values.get('password') || '')
+            })
+          });
+          window.location.replace('admin-dashboard.html');
+        } catch (error) {
+          console.error('Administrator sign-in failed.', error);
+          message.textContent = error.message || 'Administrator sign-in failed.';
+        }
+        return;
+      }
+      message.textContent = 'Opening demo portal…';
+      window.setTimeout(() => {
+        window.location.href = `${role.toLowerCase()}-dashboard.html`;
       }, 500);
     });
   }
 
   if (!reducedMotion.matches && 'IntersectionObserver' in window) {
     const revealElements = document.querySelectorAll(
-      '.header, .hero > div, .pagehero, main > .section, main > .campus-feature, ' +
+      '.header, .hero > div, .pagehero, main > .section, main > .campus-feature, main > .campus-intro, ' +
       '.content > *, .content > * > *, .content > * > * > *, .portal > *, ' +
-      '.portal > * > *, .card, .panel, .stat, .tile, .login, .footer, ' +
+      '.portal > * > *, .card, .panel, .stat, .tile, .journey-tile, .login, .footer, ' +
       '.table, .form, .field, .faculty-feature, .experience-image, ' +
       '.experience-copy, .gallery-preview__image, .admissions-callout'
     );

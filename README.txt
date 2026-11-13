@@ -1,17 +1,15 @@
 AISHA CAHN COLLEGE WEBSITE
 
-RUN THE WEBSITE
-1. Extract the project ZIP.
-2. Open the folder in VS Code.
-3. Open index.html in Chrome, Edge, or Safari. The site uses plain HTML, CSS, and JavaScript; no package installation or build step is required.
-4. Optional: use VS Code Live Server to preview over HTTP. Opening index.html directly also works.
+PROJECT
+- Responsive college website using HTML, CSS and JavaScript.
+- Python serverless API functions in api/ for Vercel.
+- PostgreSQL stores shared website content, programs, and form enquiries.
+- See DEPLOY-PYTHON-VERCEL.txt for GitHub, database, environment variable and Vercel setup.
 
-PUBLISH ON VERCEL
-1. Import the GitHub repository in Vercel and set the project root to the repository root.
-2. Select Other as the framework preset. Leave the build command and install command empty.
-3. Set the output directory to "." (the repository root), then deploy.
-4. vercel.json enables clean URLs. The existing .html links continue to work.
-5. To restrict the entire site, open the Vercel project, go to Settings > Deployment Protection, select Vercel Authentication and set the protection scope to All Deployments. Give deployment-view access only to the Vercel account(s) used by the administrator. This protects every page, including the public college website, and is configured in Vercel rather than in this repository.
+LOCAL PREVIEW
+Open index.html in a browser to preview the static design. The live backend and
+administrator sign-in require a deployed HTTPS site and configured environment
+variables. Student and teacher dashboards remain demonstrations.
 
 PAGES
 - Home: index.html
@@ -22,24 +20,26 @@ PAGES
 - Gallery: gallery.html
 - Contact: contact.html
 - Portal login: login.html
-- Student, Teacher, and Admin dashboard previews: student-dashboard.html, teacher-dashboard.html, admin-dashboard.html
-- Website control center demo: admin-dashboard.html
-- Website creator profile: ALI HAMZA · Azad Kashmir, shown on the homepage and admin dashboard
+- Student and Teacher demonstration pages: student-dashboard.html, teacher-dashboard.html
+- Administrator dashboard: admin-dashboard.html (requires the configured admin login on deployment)
 
 DESIGN AND MOTION
-- Responsive black, midnight-blue, champagne-gold, and electric-blue theme.
+- Responsive black-and-gold theme across the homepage, interior pages, portals, and dashboard.
+- Full-width campus hero, learning approach card, program overview, and quick-navigation ribbon.
 - First-visit cinematic logo introduction with a skip button. It is remembered in browser storage when available and respects prefers-reduced-motion.
-- Lightweight CSS 3D, native scroll reveals, image transitions, hover depth, and a small canvas particle field. No GSAP, Three.js, or other runtime dependency is required.
+- Lightweight CSS 3D, native scroll reveals, image transitions, hover depth, and a small canvas particle field; no GSAP or Three.js dependency.
 - Course curriculum previews use native, keyboard-accessible disclosure controls.
 - The practical-course list can be searched and filtered; each course links to an enquiry form with that course preselected.
-- All supplied and illustrative photos are stored locally under images/.
+- Supplied and illustrative photos are stored locally under images/.
 
-IMPORTANT LIMITATIONS
-- This is a front-end demonstration. There is no Supabase or other backend configuration in this project.
-- Website control center edits are stored in the current browser only. They are not shared with visitors or published to Vercel; secure login and a backend/database are required for live administration.
-- Vercel Authentication protects the whole deployment when configured as described above; it does not make browser-only website edits shared or publish them.
-- Portal login only demonstrates navigation; it is not authentication.
-- Admission and contact forms provide a demo confirmation but do not save or send data. A secure backend is needed for real submissions.
-- Dashboard counts and timetable are sample placeholders, not live records. No verified enrollment/statistics were supplied, so none are presented as actual college metrics.
-- Confirm board affiliation, admission requirements, fees, dates, timings, official contacts, and staff information with the college before publishing.
-- Campus building and Muslim Hands logo images were supplied for this project. Other course/campus images are illustrative stock photos and should be replaced with approved college photos for official use.
+BACKEND AND SECURITY
+- The admin dashboard stores edits centrally in PostgreSQL so they appear for all visitors.
+- Admin sign-in uses Vercel environment variables and a signed HttpOnly cookie; all admin APIs verify the session.
+- Contact and admission enquiries are saved in the database and can be reviewed/deleted by an authenticated admin. They are not emailed.
+- Keep DATABASE_URL, ADMIN_EMAIL, ADMIN_PASSWORD and SESSION_SECRET in Vercel only; never commit them.
+- Enquiries contain personal information. Restrict database access and remove records when they are no longer needed.
+
+CONTENT NOTES
+- Dashboard counts and timetable are sample placeholders, not actual enrollment statistics.
+- Confirm board affiliation, admission requirements, fees, dates, timings, official contacts and staff information with the college before publishing.
+- Campus building and Muslim Hands logo images were supplied for this project. Other course/campus images are illustrative and should be replaced with approved college photos for official use.

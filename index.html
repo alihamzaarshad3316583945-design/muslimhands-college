@@ -3,7 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Aisha Cahn College</title>
+  <meta name="description" content="Explore intermediate pathways and practical courses in computer science, design and digital skills at Aisha Cahn College.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aisha Cahn College | Computer Science & Design">
+  <meta property="og:description" content="Explore intermediate pathways and practical courses in computer science, design and digital skills at Aisha Cahn College.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Aisha Cahn College | Computer Science & Design">
+  <meta name="twitter:description" content="Explore intermediate pathways and practical courses in computer science, design and digital skills at Aisha Cahn College.">
+  <title>Aisha Cahn College | Computer Science &amp; Design</title>
   <link rel="stylesheet" href="css/style.css">
   <script defer src="js/app.js"></script>
 </head>
@@ -12,19 +19,11 @@
     <canvas class="intro-particles" id="introParticles" aria-hidden="true"></canvas>
     <div class="intro-light" aria-hidden="true"></div>
     <div class="intro-content">
-      <div class="art__logo-wrap intro-logo-wrap">
-        <img class="art__logo intro-logo" src="images/muslim-hands-logo.png" alt="">
-        <svg class="art__wheel-text" viewBox="0 0 200 200" aria-hidden="true">
-          <path class="art__lettering-mask" fill-rule="evenodd" d="M100 8a92 92 0 1 1 0 184a92 92 0 1 1 0-184z M100 30a70 70 0 1 1 0 140a70 70 0 1 1 0-140z"></path>
-          <defs>
-            <path id="introTopArc" d="M16 100a84 84 0 0 1 168 0"></path>
-            <path id="introBottomArc" d="M16 100a84 84 0 0 0 168 0"></path>
-          </defs>
-          <g class="art__wheel">
-            <text class="art__wheel-top"><textPath href="#introTopArc" startOffset="50%" text-anchor="middle">MUSLIM HANDS</textPath></text>
-            <text class="art__wheel-bottom"><textPath href="#introBottomArc" startOffset="50%" text-anchor="middle">UNITED FOR THE NEEDY</textPath></text>
-          </g>
-        </svg>
+      <div class="intro-brand-logos" aria-label="Muslim Hands and Aisha Cahn College">
+        <div class="art__logo-wrap intro-logo-wrap">
+          <img class="art__logo intro-logo" src="images/muslim-hands-logo.png" alt="Muslim Hands logo">
+        </div>
+        <img class="intro-acf-logo" src="images/acf-logo-transparent.png" alt="Aisha Cahn College ACF logo">
       </div>
       <p class="eyebrow">LEARN · CREATE · LEAD</p>
       <p class="intro-name" aria-label="Aisha Cahn College">
@@ -42,18 +41,129 @@
     <nav class="nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="admissions.html">Admissions</a><a href="faculty.html">Faculty</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a><a class="cta" href="login.html">Portal Login</a></nav>
   </header>
   <main>
-    <section class="hero">
-      <div>
-        <span class="eyebrow" data-site-field="homeKicker">LEARN · CREATE · LEAD</span>
-        <h1 tabindex="-1" data-site-field="homeTitle">Aisha Cahn College</h1>
-        <p data-site-field="homeDescription">Build your future with intermediate programs in arts, computer science and sciences, alongside practical creative and digital skills.</p>
-        <a class="btn gold" href="programs.html">Explore Programs</a>
-        <a class="btn" href="admissions.html">Ask About Admission</a>
+    <section class="hero hero--landing">
+      <div class="hero-copy">
+        <span class="eyebrow hero-kicker"><span aria-hidden="true">✦</span><span data-site-field="homeKicker">LEARN · INNOVATE · EXCEL</span></span>
+        <h1 tabindex="-1" data-site-field="homeTitle">Where Learning Becomes a Journey</h1>
+        <p data-site-field="homeDescription">At Aisha Cahn College of Computer Science &amp; Design Technology, learning begins with a question, grows through exploration, and becomes meaningful when you build something with what you know.</p>
+        <div class="hero-actions">
+          <a class="btn gold" href="admissions.html">Apply for admission <span aria-hidden="true">→</span></a>
+          <a class="hero-secondary-link" href="programs.html"><span class="hero-play" aria-hidden="true">▶</span> Explore programs</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="images/college-campus.png" alt="Aisha Cahn College campus building">
+        <div class="hero-visual__shade"></div>
+        <aside class="hero-feature-card">
+          <div class="hero-feature-card__top"><span>✦ &nbsp; OUR LEARNING APPROACH</span><span class="hero-feature-card__mark" aria-hidden="true">ACC</span></div>
+          <div class="hero-feature-card__logos" aria-label="Muslim Hands and Aisha Cahn College">
+            <img src="images/muslim-hands-logo.png" alt="Muslim Hands logo" loading="lazy">
+            <img src="images/acf-logo-transparent.png" alt="Aisha Cahn College ACF logo" loading="lazy">
+          </div>
+          <h2>Learning with purpose</h2>
+          <p>Explore academic pathways and practical skills in a supportive learning environment.</p>
+          <a href="about.html">Discover our college <span aria-hidden="true">→</span></a>
+        </aside>
       </div>
     </section>
-    <section class="wrap campus-feature">
-      <img class="campus-feature__image" src="images/college-building.png" alt="Muslim Hands College building">
-      <div class="campus-feature__caption"><span class="eyebrow">CAMPUS</span><h2>Our <em>College</em></h2></div>
+    <section class="hero-stats" aria-label="Programs and learning areas">
+      <div class="hero-stat"><span aria-hidden="true">✦</span><div><strong data-intermediate-count>5</strong><small>Intermediate pathways</small></div></div>
+      <div class="hero-stat"><span aria-hidden="true">▤</span><div><strong>7</strong><small>Practical skills courses</small></div></div>
+      <div class="hero-stat"><span aria-hidden="true">⌘</span><div><strong>Explore</strong><small>Technology &amp; design</small></div></div>
+      <div class="hero-stat"><span aria-hidden="true">➜</span><div><strong>Your future</strong><small>Starts with a question</small></div></div>
+    </section>
+    <nav class="program-ribbon" aria-label="Explore college programs and services">
+      <a href="programs.html#college-programs"><span aria-hidden="true">▤</span> Intermediate programs</a>
+      <a href="programs.html#practical-training"><span aria-hidden="true">⌘</span> Computer science</a>
+      <a href="programs.html#practical-training"><span aria-hidden="true">✧</span> Web development</a>
+      <a href="programs.html#practical-training"><span aria-hidden="true">✂</span> Fashion design</a>
+      <a href="programs.html#practical-training"><span aria-hidden="true">◈</span> Digital marketing</a>
+      <a href="admissions.html"><span aria-hidden="true">↗</span> Admissions</a>
+    </nav>
+    <section class="wrap journey-section" aria-labelledby="journeyTitle">
+      <div class="journey-heading">
+        <div><span class="eyebrow">EXPLORE THE COLLEGE</span><h2 id="journeyTitle">Where will your <em>curiosity</em> take you?</h2></div>
+        <p>Start with the path that feels right. Explore programs, practical learning and life around the college.</p>
+      </div>
+      <div class="journey-grid">
+        <article class="journey-tile journey-tile--academic">
+          <span class="journey-tile__top"><span>01 / STUDY PATHWAYS</span><span class="journey-tile__icon" aria-hidden="true">✦</span></span>
+          <span class="journey-tile__title">Build your foundation</span>
+          <span class="journey-tile__description">Explore the intermediate study pathways and their subject focus.</span>
+          <ul class="journey-tile__details" aria-label="Intermediate programs">
+            <li><strong>FA</strong><span>Humanities and arts; electives depend on the college and board.</span></li>
+            <li><strong>FA-IT</strong><span>Arts studies with an information technology focus.</span></li>
+            <li><strong>ICS</strong><span>Computer Science and Mathematics, with an approved supporting subject.</span></li>
+            <li><strong>FSc Pre-Medical</strong><span>Biology, Chemistry and Physics.</span></li>
+            <li><strong>FSc Pre-Engineering</strong><span>Mathematics, Chemistry and Physics.</span></li>
+          </ul>
+          <p class="journey-tile__note">Subject combinations and eligibility must be confirmed with the college.</p>
+          <a class="journey-tile__link" href="programs.html#college-programs">Explore academics <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="journey-tile journey-tile--digital">
+          <span class="journey-tile__top"><span>02 / DIGITAL & CREATIVE</span><span class="journey-tile__icon" aria-hidden="true">⌘</span></span>
+          <span class="journey-tile__title">Make ideas tangible</span>
+          <span class="journey-tile__description">Build practical skills across technology, design and online business.</span>
+          <ul class="journey-tile__details" aria-label="Practical skills courses">
+            <li><strong>Artificial Intelligence</strong><span>AI basics, useful tools, prompt writing and responsible use.</span></li>
+            <li><strong>Web Designing</strong><span>Page layouts, HTML, CSS and responsive design.</span></li>
+            <li><strong>Fashion Designing</strong><span>Illustration, colors, fabrics and design concepts.</span></li>
+            <li><strong>Tailoring</strong><span>Measurements, patterns, cutting, stitching and finishing.</span></li>
+            <li><strong>Digital Marketing</strong><span>Audience research, content, search basics and analytics.</span></li>
+            <li><strong>Social Media Marketing</strong><span>Content planning, post design and engagement.</span></li>
+            <li><strong>E-commerce</strong><span>Product listings, customer experience and online orders.</span></li>
+          </ul>
+          <p class="journey-tile__note">Ask the college which courses are currently available.</p>
+          <a class="journey-tile__link" href="programs.html#practical-training">Explore skills <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="journey-tile journey-tile--admissions">
+          <span class="journey-tile__top"><span>03 / YOUR NEXT STEP</span><span class="journey-tile__icon" aria-hidden="true">→</span></span>
+          <span class="journey-tile__title">Plan your admission</span>
+          <span class="journey-tile__description">Prepare your questions and confirm the current process with the college.</span>
+          <ul class="journey-tile__details" aria-label="Admission checklist">
+            <li><strong>Before enquiring</strong><span>Keep your latest academic result or certificate details handy.</span></li>
+            <li><strong>Choose a program</strong><span>Ask about eligibility, merit and board-approved subject combinations.</span></li>
+            <li><strong>Documents</strong><span>Confirm the official application and any copies or photographs required.</span></li>
+            <li><strong>Current details</strong><span>Ask about fees, class timings and the next intake dates.</span></li>
+          </ul>
+          <p class="journey-tile__note">Requirements and availability are confirmed by the college.</p>
+          <a class="journey-tile__link" href="admissions.html">Get started <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="journey-tile journey-tile--campus">
+          <span class="journey-tile__top"><span>04 / CAMPUS LIFE</span><span class="journey-tile__icon" aria-hidden="true">◎</span></span>
+          <span class="journey-tile__title">Get to know your college</span>
+          <span class="journey-tile__description">A quick introduction to the institution, its location and areas of focus.</span>
+          <dl class="journey-tile__profile">
+            <div><dt>Full name</dt><dd>Aisha Cahn College of Computer Science &amp; Design Technology</dd></div>
+            <div><dt>Location</dt><dd>Wazirabad, Punjab, Pakistan</dd></div>
+            <div><dt>Institution</dt><dd>A Muslim Hands Institution</dd></div>
+            <div><dt>Foundation</dt><dd>Aisha Cahn Foundation</dd></div>
+            <div><dt>Main focus</dt><dd>Computer Science &amp; Design Technology</dd></div>
+          </dl>
+          <p class="journey-tile__note">Explore campus, classrooms, computer learning and creative work in the gallery.</p>
+          <a class="journey-tile__link" href="gallery.html">View the gallery <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </section>
+    <section class="wrap campus-intro" aria-labelledby="campusIntroTitle">
+      <div class="campus-intro__visual">
+        <img src="images/college-campus.png" alt="Aisha Cahn College campus building" loading="lazy">
+        <span class="campus-intro__image-label"><span aria-hidden="true">✦</span> A PLACE TO GROW</span>
+      </div>
+      <div class="campus-intro__content">
+        <span class="eyebrow">MORE THAN A CLASSROOM</span>
+        <h2 id="campusIntroTitle">Find your place to <em>learn and grow.</em></h2>
+        <p>Build a strong academic foundation, explore digital and creative skills, and discover what you can do next at Aisha Cahn College.</p>
+        <div class="campus-intro__highlights" aria-label="What you can explore">
+          <span><b aria-hidden="true">01</b> Academic pathways</span>
+          <span><b aria-hidden="true">02</b> Practical skills</span>
+          <span><b aria-hidden="true">03</b> A supportive community</span>
+        </div>
+        <div class="campus-intro__actions">
+          <a class="btn gold" href="about.html">Get to know us <span aria-hidden="true">→</span></a>
+          <a class="campus-intro__link" href="gallery.html">Explore campus <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
     </section>
     <section class="wrap section center intermediate-programs">
       <span class="eyebrow">INTERMEDIATE PROGRAMS</span>
@@ -109,7 +219,7 @@
         <a class="text-link" href="gallery.html">View the gallery <span aria-hidden="true">↗</span></a>
       </div>
       <a class="gallery-preview__image" href="gallery.html">
-        <img src="images/college-building.png" alt="Muslim Hands College building" loading="lazy">
+        <img src="images/college-campus.png" alt="Aisha Cahn College campus building" loading="lazy">
         <span>Explore campus life <b aria-hidden="true">↗</b></span>
       </a>
     </section>
@@ -121,7 +231,6 @@
           <h2 id="creatorProfileHeading" data-site-field="creatorName">ALI HAMZA</h2>
           <p class="creator-profile__location">From <span data-site-field="creatorLocation">Azad Kashmir</span></p>
           <p data-site-field="creatorBio">Designed and built this website with care for the college community.</p>
-          <a href="admin-dashboard.html">Website control center <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>

@@ -1,0 +1,58 @@
+AISHA CAHN COLLEGE — PYTHON BACKEND DEPLOYMENT
+
+WHAT THIS PACKAGE INCLUDES
+- Python serverless API functions for Vercel.
+- PostgreSQL storage for website content, programs and admission/contact enquiries.
+- Administrator login with a signed, HttpOnly, SameSite=Strict cookie.
+- Admin-only content editing, program management, enquiry viewing/deletion and sign-out.
+- Public pages stay public. Admin APIs require a valid admin session.
+
+BEFORE YOU PUSH TO GITHUB
+1. Create a GitHub repository for this project and upload the contents of this folder.
+   Do not upload .git from another project, virtual environments, or secret files.
+2. Create a PostgreSQL database. The Vercel Marketplace Neon integration is one option.
+   Copy the database connection string. Use the provider's SSL-enabled connection
+   string and keep it private.
+3. Keep the following values ready for Vercel:
+   DATABASE_URL     PostgreSQL connection string
+   ADMIN_EMAIL      administrator sign-in email
+   ADMIN_PASSWORD   unique administrator password of at least 14 characters
+   SESSION_SECRET   random secret of at least 32 characters
+
+Generate a SESSION_SECRET on Windows PowerShell with:
+  python -c "import secrets; print(secrets.token_urlsafe(48))"
+
+Never put these values in HTML, JavaScript, GitHub, or this ZIP. Never use a
+PostgreSQL password or a database service-role credential in frontend code.
+
+DEPLOY ON VERCEL
+1. In Vercel, import the GitHub repository.
+2. Choose the Other framework preset. Keep the project root at the repository root.
+   There is no separate build command or output folder needed.
+3. In Project Settings > Environment Variables, add DATABASE_URL, ADMIN_EMAIL,
+   ADMIN_PASSWORD and SESSION_SECRET. Enable them for Production; enable Preview
+   only if you intend preview deployments to use the same database/admin.
+4. Deploy or redeploy after adding/changing environment variables.
+5. Open https://YOUR-DOMAIN/login.html?admin=1 and sign in with ADMIN_EMAIL and
+   ADMIN_PASSWORD. The dashboard is at /admin-dashboard.html.
+6. Submit a test admission/contact form, check it under Enquiries in the dashboard,
+   and delete the test record. Change a test program/content value and verify it on
+   a public page, then restore the original value if desired.
+
+The API creates its three PostgreSQL tables automatically on first use. The
+database role in DATABASE_URL therefore needs permission to create tables. No
+database schema file needs to be run manually.
+
+IMPORTANT
+- This backend requires a deployed Vercel URL and a PostgreSQL database. Opening
+  index.html directly from disk does not connect to the live API.
+- Student and teacher portal pages remain demonstration pages; only the admin
+  login is authenticated.
+- Enquiries are stored in the database and visible to an authenticated admin.
+  This package does not email or text submissions. The admin must check Enquiries.
+- Enquiries contain personal contact details. Limit database access, do not share
+  admin credentials, and delete records when they are no longer needed.
+- A previously edited localStorage demo is not automatically copied into the new
+  database. Use the dashboard to enter the live website content after deployment.
+- The administrator login uses one configured account. To change it, update the
+  Vercel environment variables and redeploy.

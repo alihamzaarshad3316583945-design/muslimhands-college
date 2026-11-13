@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Website Control Center | Aisha Cahn College</title>
+  <meta name="robots" content="noindex,nofollow">
+  <title>Admin Dashboard | Aisha Cahn College</title>
   <link rel="stylesheet" href="css/style.css">
   <script defer src="js/app.js"></script>
 </head>
-<body>
+<body class="admin-gate">
   <header class="header">
-    <a class="brand" href="index.html"><img class="brand-logo" src="images/muslim-hands-logo.png" alt="Muslim Hands logo"><span>AISHA CAHN<small>WEBSITE CONTROL CENTER</small></span></a>
+    <a class="brand" href="index.html"><img class="brand-logo" src="images/muslim-hands-logo.png" alt="Muslim Hands logo"><span>AISHA CAHN<small>ADMIN DASHBOARD</small></span></a>
     <button class="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-    <nav class="nav"><a href="index.html">View website</a><a href="#site-editor">Edit pages</a><a href="#program-manager">Programs</a><a href="#creator-profile">Creator profile</a></nav>
+    <nav class="nav"><a href="index.html">View website</a><a href="#site-editor">Edit pages</a><a href="#program-manager">Programs</a><a href="#creator-profile">Creator profile</a><a href="#" id="adminLogout">Sign out</a></nav>
   </header>
   <main class="admin-page">
     <div class="wrap admin-shell">
@@ -23,6 +24,7 @@
           <a href="#site-editor">Website content</a>
           <a href="#program-manager">Programs</a>
           <a href="#creator-profile">Creator profile</a>
+          <a href="#enquiries">Enquiries</a>
         </nav>
         <a class="admin-preview-link" href="index.html">↗ Open public website</a>
       </aside>
@@ -32,17 +34,17 @@
           <h1>Your website, <em>your control.</em></h1>
           <p>Edit the public homepage, about page, programs and creator profile from one place.</p>
         </section>
-        <div class="notice admin-demo-notice"><strong>Browser demo:</strong> Changes are saved only in this browser on this device. This page has no secure admin login or online publishing; connect a backend before using it as a live multi-user website.</div>
+        <div class="notice admin-demo-notice"><strong>Admin dashboard:</strong> Changes are saved to the connected database and shared with website visitors. Keep administrator credentials private.</div>
         <p class="admin-status" id="adminStatus" role="status" aria-live="polite"></p>
         <div class="stats admin-stats">
           <div class="stat"><span>Managed programs</span><strong id="programTotal">5</strong></div>
           <div class="stat"><span>Editable pages</span><strong>7</strong></div>
-          <div class="stat"><span>Storage</span><strong class="admin-local-label">This browser</strong></div>
+          <div class="stat"><span>Storage</span><strong class="admin-local-label">Database</strong></div>
         </div>
 
         <section class="admin-panel" id="site-editor">
           <div class="admin-section-heading"><div><span class="eyebrow">PAGE CONTENT</span><h2>Website editor</h2></div><span class="admin-badge">7 pages</span></div>
-          <p>Update key text shown on the public pages. Changes appear the next time those pages load in this browser.</p>
+          <p>Update key text shown on public pages. Saved changes are shared with all visitors.</p>
           <form id="siteSettingsForm" class="admin-form">
             <fieldset>
               <legend>Homepage hero</legend>
@@ -78,7 +80,7 @@
 
         <section class="admin-panel" id="program-manager">
           <div class="admin-section-heading"><div><span class="eyebrow">COURSES & STUDY</span><h2>Program manager</h2></div><span class="admin-badge">Add · Edit · Remove</span></div>
-          <p>Program changes appear on the homepage, programs page and admissions form in this browser.</p>
+          <p>Program changes appear on the homepage, programs page and admissions form.</p>
           <div id="programAdminList" class="program-admin-list"></div>
           <form id="addProgramForm" class="admin-add-program">
             <h3>Add a program</h3>
@@ -88,6 +90,12 @@
             </div>
             <button class="btn gold" type="submit">Add program</button>
           </form>
+        </section>
+
+        <section class="admin-panel" id="enquiries">
+          <div class="admin-section-heading"><div><span class="eyebrow">INCOMING MESSAGES</span><h2>Enquiries</h2></div><span class="admin-badge">Latest 100</span></div>
+          <p>Admission and contact submissions are stored in the connected database. Delete enquiries when they are no longer needed.</p>
+          <div id="submissionList" class="submission-list" aria-live="polite"><p>Loading enquiries…</p></div>
         </section>
 
         <section class="admin-panel creator-admin-panel" id="creator-profile">
@@ -104,12 +112,12 @@
         </section>
 
         <div class="admin-reset-row">
-          <p>Restore the original demo content and program list for this browser.</p>
-          <button class="btn admin-reset-button" id="resetSiteSettings" type="button">Reset demo content</button>
+          <p>Restore the original website text and program list.</p>
+          <button class="btn admin-reset-button" id="resetSiteSettings" type="button">Reset website content</button>
         </div>
       </div>
     </div>
   </main>
-  <footer class="footer">© <span class="year"></span> Aisha Cahn College · Website control center demo</footer>
+  <footer class="footer">© <span class="year"></span> Aisha Cahn College · Admin dashboard</footer>
 </body>
 </html>
